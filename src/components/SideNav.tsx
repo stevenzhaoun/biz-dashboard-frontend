@@ -11,10 +11,10 @@ import { Link } from 'react-router-dom';
 const drawerWidth = 240;
 
 const links = [
-    {label: 'Dashboard', link: '/'},
-    {label: 'Users', link: '/users'},
-    {label: 'Roles', link: '/roles'},
-    {label: 'Products', link: '/products'},
+    { label: 'Dashboard', link: '/' },
+    { label: 'Users', link: '/users' },
+    { label: 'Roles', link: '/roles' },
+    { label: 'Products', link: '/products' },
 ]
 
 export default function SideNav() {
@@ -32,11 +32,13 @@ export default function SideNav() {
             <Box sx={{ overflow: 'auto' }}>
                 <List>
                     {links.map((link) => (
-                        <ListItem key={link.label} disablePadding>
-                            <ListItemButton>
-                                <Link to={link.link}><ListItemText primary={link.label} /></Link>
-                            </ListItemButton>
-                        </ListItem>
+                        <Link to={link.link} key={link.label}>
+                            <ListItem  disablePadding>
+                                <ListItemButton>
+                                    <ListItemText primary={link.label} style={{listStyle: 'none'}} />
+                                </ListItemButton>
+                            </ListItem>
+                        </Link>
                     ))}
                 </List>
             </Box>

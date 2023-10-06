@@ -1,23 +1,21 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, Navigate } from "react-router-dom"
 import NavBar from "./AppBar"
 import { Box } from "@mui/material"
 import SideNav from "./SideNav"
 import Toolbar from '@mui/material/Toolbar';
-import Login from "../modules/Login";
+import useUser from "../hooks/useUser";
+import { useEffect } from "react";
 
 
 function Layout() {
-  // return (
-  //   <Login/>
-  // )
   return (
     <>
       <header><NavBar /></header>
-      <Box sx={{display: 'flex'}} >
+      <Box sx={{ display: 'flex' }} >
         <SideNav />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <Toolbar />
-          <Outlet/>
+          <Outlet />
         </Box>
       </Box>
     </>

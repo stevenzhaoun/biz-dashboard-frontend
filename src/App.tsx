@@ -1,12 +1,31 @@
 
 import './App.css'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import Layout from './components/Layout'
 import Dashboard from './components/Dashboard'
 import Users from './modules/Users'
 import CssBaseline from '@mui/material/CssBaseline';
 import Login from './modules/Login'
+import useUser from './hooks/useUser'
+import { useEffect } from 'react'
 function App() {
+  const { user, setUserData } = useUser()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const userStr = localStorage.getItem('user')
+    if (userStr) {
+      if (!user) {
+        const userData = JSON.parse(userStr)
+        setUserData(userData)
+      }
+    } else {
+      if(!user) {
+        navigate('/login')
+      }
+    }
+  }, [user])
+
   return (
     <>
       <CssBaseline />
