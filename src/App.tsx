@@ -9,6 +9,8 @@ import Login from './modules/Login'
 import ListRoles from './modules/Roles/ListRoles'
 import UserDetail from './modules/Users/UserDetail'
 import RoleDetail from './modules/Roles/RoleDetails'
+import ListProducts from './modules/Products/ListProducts'
+import AccountDetail from './modules/Account/AccountDetail'
 function App() {
 
 
@@ -18,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
+          <Route path='/account' element={<AccountDetail/>}/>
           <Route path='/roles'>
             <Route index element={<ListRoles />} />
             <Route path=":id" element={<RoleDetail />} />
@@ -26,6 +29,10 @@ function App() {
             <Route index element={<ListUsers />} />
             <Route path=":id" element={<UserDetail />} />
           </Route>
+          <Route path='/products'>
+            <Route index element={<ListProducts />} />
+          </Route>
+
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>

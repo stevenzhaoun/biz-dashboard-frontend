@@ -76,7 +76,7 @@ export default function UserDetail() {
                 <TextField label="Email" margin="normal" fullWidth required type="email" value={data.email} onChange={handleChange('email')} />
             </Box>
             <FormControl fullWidth>
-                <InputLabel id="role-select-label">Age</InputLabel>
+                <InputLabel id="role-select-label">Role</InputLabel>
                 <Select
                     labelId="role-select-label"
                     id="role-select"

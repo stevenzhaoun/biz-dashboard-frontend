@@ -1,5 +1,6 @@
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import useUser from "../hooks/useUser";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
     const { user, logout } = useUser()
@@ -11,7 +12,7 @@ export default function NavBar() {
                         Business Management System
                     </Typography>
                     <Box display="flex" alignItems={'center'}>
-                        <Box mr={3}><Typography ><strong>{user?.name}</strong></Typography></Box>
+                        <Box mr={3}><Link to="/account" style={{textDecoration: 'none', color: 'white'} }><Typography ><strong>{user?.name}</strong></Typography></Link></Box>
                         <Button color="inherit" size="small" onClick={logout}><Typography>Logout</Typography></Button>
                     </Box>
                 </Toolbar>

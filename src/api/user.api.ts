@@ -21,3 +21,11 @@ export const updateUser = async (userId:string, userData: User) => {
     const { data } = await client.put(`/users/${userId}`, userData)
     return data as User
 }
+
+export const updatePassword = async(userId: number, password: string) => {
+    const { data } = await client.put('/auth/update-password', {
+        userId,
+        password
+    })
+    return data
+}
