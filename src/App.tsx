@@ -11,6 +11,7 @@ import UserDetail from './modules/Users/UserDetail'
 import RoleDetail from './modules/Roles/RoleDetails'
 import ListProducts from './modules/Products/ListProducts'
 import AccountDetail from './modules/Account/AccountDetail'
+import ProductDetails from './modules/Products/ProductDetails'
 function App() {
 
 
@@ -31,6 +32,7 @@ function App() {
           </Route>
           <Route path='/products'>
             <Route index element={<ListProducts />} />
+            <Route path=":id" element={<ProductDetails />} />
           </Route>
 
         </Route>

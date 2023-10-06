@@ -21,3 +21,10 @@ export interface RolePayload {
     name: string;
     permissions?: number[];
 }
+
+export interface Product {
+    id?: number;
+    title: string;
+    description: string;
+    price: number;
+}

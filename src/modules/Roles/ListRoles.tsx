@@ -3,7 +3,7 @@ import { getRoles } from "../../api/roles.api"
 import { Role } from "../../types"
 import { Box, CircularProgress, Typography, Button } from "@mui/material"
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export default function ListRoles(){
@@ -13,8 +13,8 @@ export default function ListRoles(){
 
     const fetchData = async () => {
         setLoading(true)
-        const users = await getRoles()
-        setData(users)
+        const roles = await getRoles()
+        setData(roles)
         setLoading(false)
     }
     useEffect(() => {
@@ -37,7 +37,7 @@ export default function ListRoles(){
 
         <Box mb={3} display={"flex"} justifyContent={"space-between"}>
             <Typography variant="h4">Roles</Typography>
-            <Button variant="outlined" href="/roles/add" size="small">Add Role</Button>
+            <Link to="/roles/add"><Button variant="outlined"  size="small">Add Role</Button></Link>
         </Box>
         <Box sx={{ width: '100%' }}>
             <DataGrid
