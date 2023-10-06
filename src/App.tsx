@@ -7,9 +7,10 @@ import Users from './modules/Users'
 import CssBaseline from '@mui/material/CssBaseline';
 import Login from './modules/Login'
 import useUser from './hooks/useUser'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 function App() {
   const { user, setUserData } = useUser()
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {

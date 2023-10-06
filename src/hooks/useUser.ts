@@ -17,7 +17,7 @@ const useUser = () => {
     const setUserData = (user: UserActions.UserState) => {
         dispatch(UserActions.login(user))
         localStorage.setItem('user', JSON.stringify(user))
-        client.defaults.headers['Authorization'] = user.token
+        client.defaults.headers.common['Authorization'] = user.token
     }
 
     const login = async (email: string, password: string) => {
@@ -39,7 +39,7 @@ const useUser = () => {
     const logout = () => {
         dispatch(UserActions.logout())
         localStorage.removeItem('user')
-        client.defaults.headers['Authorization'] = null
+        client.defaults.headers.common['Authorization'] = null
     }
 
     return {

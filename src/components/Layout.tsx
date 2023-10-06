@@ -1,13 +1,11 @@
-import { Outlet, Navigate } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import NavBar from "./AppBar"
 import { Box } from "@mui/material"
 import SideNav from "./SideNav"
 import Toolbar from '@mui/material/Toolbar';
-import useUser from "../hooks/useUser";
-import { useEffect } from "react";
-
 
 function Layout() {
+  
   return (
     <>
       <header><NavBar /></header>
