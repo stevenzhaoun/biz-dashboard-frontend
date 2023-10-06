@@ -7,10 +7,11 @@ import Users from './modules/Users'
 import CssBaseline from '@mui/material/CssBaseline';
 import Login from './modules/Login'
 import useUser from './hooks/useUser'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import AddUser from './modules/AddUser'
+import Roles from './modules/Roles'
 function App() {
   const { user, setUserData } = useUser()
-  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -34,6 +35,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path='/users' element={<Users />} />
+          <Route path='/users/add-user' element={<AddUser />} />
+          <Route path='/roles' element={<Roles />} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>
