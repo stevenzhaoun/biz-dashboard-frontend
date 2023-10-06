@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
-import { getRoles } from "../api/roles.api"
-import { Role } from "../types"
+import { getRoles } from "../../api/roles.api"
+import { Role } from "../../types"
 import { Box, CircularProgress, Typography, Button } from "@mui/material"
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useNavigate } from "react-router-dom";
 
 
-export default function Roles(){
+export default function ListRoles(){
     const [data, setData] = useState<Role[]>([])
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
@@ -37,7 +37,7 @@ export default function Roles(){
 
         <Box mb={3} display={"flex"} justifyContent={"space-between"}>
             <Typography variant="h4">Roles</Typography>
-            <Button variant="outlined" href="/roles/add-role" size="small">Add Role</Button>
+            <Button variant="outlined" href="/roles/add" size="small">Add Role</Button>
         </Box>
         <Box sx={{ width: '100%' }}>
             <DataGrid

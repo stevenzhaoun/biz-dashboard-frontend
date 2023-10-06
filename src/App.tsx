@@ -6,8 +6,9 @@ import Dashboard from './components/Dashboard'
 import ListUsers from './modules/Users/ListUsers'
 import CssBaseline from '@mui/material/CssBaseline';
 import Login from './modules/Login'
-import Roles from './modules/Roles'
+import ListRoles from './modules/Roles/ListRoles'
 import UserDetail from './modules/Users/UserDetail'
+import RoleDetail from './modules/Roles/RoleDetails'
 function App() {
 
 
@@ -17,7 +18,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
-          <Route path='/roles' element={<Roles />} />
+          <Route path='/roles'>
+            <Route index element={<ListRoles />} />
+            <Route path=":id" element={<RoleDetail />} />
+          </Route>
           <Route path='/users'>
             <Route index element={<ListUsers />} />
             <Route path=":id" element={<UserDetail />} />

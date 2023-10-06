@@ -1,6 +1,6 @@
 import { LoadingButton } from "@mui/lab";
 import { Box, CircularProgress, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Role, User } from "../../types";
 import { createUser, getUser, updateUser } from "../../api/user.api";
@@ -44,7 +44,8 @@ export default function UserDetail() {
         })
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
         setSubmitting(true)
         if (isAdd) {
             await createUser(data)

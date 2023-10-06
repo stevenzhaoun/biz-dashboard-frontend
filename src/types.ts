@@ -11,7 +11,13 @@ export interface Permission {
 }
 
 export interface Role {
-    id: number;
+    id?: number;
     name: string;
     permissions?: Permission[];
+}
+
+export interface RolePayload {
+    id?: number;
+    name: string;
+    permissions?: number[];
 }
