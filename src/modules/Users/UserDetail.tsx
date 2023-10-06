@@ -1,9 +1,10 @@
 import { LoadingButton } from "@mui/lab";
-import { Box, CircularProgress, TextField, Typography } from "@mui/material";
+import { Box, CircularProgress, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import { ChangeEvent, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { User } from "../../types";
+import { Role, User } from "../../types";
 import { createUser, getUser, updateUser } from "../../api/user.api";
+import { getRoles } from "../../api/roles.api";
 
 const initialData: User = {
     name: '',
@@ -14,6 +15,7 @@ const initialData: User = {
 export default function UserDetail() {
     const params = useParams<{ id: string }>()
     const [data, setData] = useState(initialData);
+    const [roles, setRoles] = useState<Role[]>([])
     const [loading, setLoading] = useState(false)
     const [submitting, setSubmitting] = useState(false)
 
@@ -30,6 +32,9 @@ export default function UserDetail() {
                 setLoading(false)
             })
         }
+        getRoles().then(data => {
+            setRoles(data)
+        })
     }, [isAdd])
 
     const handleChange = (fieldName: string) => (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +46,7 @@ export default function UserDetail() {
 
     const handleSubmit = async () => {
         setSubmitting(true)
-        if(isAdd) {
+        if (isAdd) {
             await createUser(data)
         } else {
             await updateUser(userId, data)
@@ -49,8 +54,15 @@ export default function UserDetail() {
         setSubmitting(false)
     }
 
-    if(loading) {
-        return <CircularProgress/>
+    const handleRoleChange = (e: SelectChangeEvent<number>) => {
+        setData({
+            ...data,
+            roleId: Number(e.target.value)
+        })
+    }
+
+    if (loading) {
+        return <CircularProgress />
     }
 
     return <Box>
@@ -62,6 +74,18 @@ export default function UserDetail() {
             <Box>
                 <TextField label="Email" margin="normal" fullWidth required type="email" value={data.email} onChange={handleChange('email')} />
             </Box>
+            <FormControl fullWidth>
+                <InputLabel id="role-select-label">Age</InputLabel>
+                <Select
+                    labelId="role-select-label"
+                    id="role-select"
+                    value={data.roleId}
+                    label="Role"
+                    onChange={handleRoleChange}
+                >
+                    {roles.map(role => <MenuItem value={role.id} key={role.id}>{role.name}</MenuItem>)}
+                </Select>
+            </FormControl>
             <Box my={3}>
                 <LoadingButton loading={submitting} type="submit" fullWidth variant="contained">{isAdd ? 'Create' : 'Update'} </LoadingButton>
             </Box>

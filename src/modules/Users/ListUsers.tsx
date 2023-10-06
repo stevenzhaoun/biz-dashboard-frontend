@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react"
 import { getUsers } from "../../api/user.api"
-import { User } from "../../types"
+import { Role, User } from "../../types"
 import { Box, Button, CircularProgress, Typography } from "@mui/material"
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { useNavigate } from "react-router-dom";
+import { getRoles } from "../../api/roles.api";
 
 export default function ListUsers() {
     const [data, setData] = useState<User[]>([])
+    const [roles, setRoles] = useState<Role[]>([])
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
     const fetchData = async () => {
         setLoading(true)
-        const users = await getUsers()
+        const [users, roles] = await Promise.all([getUsers(), getRoles()])
         setData(users)
+        setRoles(roles)
         setLoading(false)
     }
     useEffect(() => {
@@ -38,7 +41,7 @@ export default function ListUsers() {
             field: 'roleId',
             headerName: "Role",
             valueGetter: (params: GridValueGetterParams<User>) => {
-                return params.row.roleId
+                return roles.find(role => role.id === params.row.roleId)?.name || params.row.roleId
             },
             flex: 1
         }

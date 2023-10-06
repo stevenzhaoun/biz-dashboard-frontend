@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import userReducer from './slices/user'
+import permissionsReducer from './slices/permission'
 
 export const store = configureStore({
     reducer: combineReducers({
-        user: userReducer
+        user: userReducer,
+        permissions: permissionsReducer
     }),
 })
 

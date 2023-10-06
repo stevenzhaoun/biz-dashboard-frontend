@@ -15,9 +15,9 @@ const useUser = () => {
     const dispatch = useAppDispatch()
 
     const setUserData = (user: UserActions.UserState) => {
-        dispatch(UserActions.login(user))
         localStorage.setItem('user', JSON.stringify(user))
         client.defaults.headers.common['Authorization'] = user.token
+        dispatch(UserActions.login(user))
     }
 
     const login = async (email: string, password: string) => {
