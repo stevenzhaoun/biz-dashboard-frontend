@@ -5,13 +5,19 @@ export interface User {
     roleId: number
 }
 
-export interface Permission{
-    id:number;
-    name:string;
+export interface Permission {
+    id: number;
+    name: string;
 }
 
-export interface Role{
-    id:number;
-    name:string;
-    permissions:Permission[];
+export interface Role {
+    id?: number;
+    name: string;
+    permissions?: Permission[];
+}
+
+export interface RolePayload {
+    id?: number;
+    name: string;
+    permissions?: number[];
 }
