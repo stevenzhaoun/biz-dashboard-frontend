@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const client = axios.create({
-    baseURL: "https://eab6-142-116-176-161.ngrok-free.app"
+    baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:3000"
 })
 
 export default client
