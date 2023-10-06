@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
-import { getUsers } from "../api/user.api"
-import { User } from "../types"
-import { Box, CircularProgress, Typography } from "@mui/material"
+import { getUsers } from "../../api/user.api"
+import { User } from "../../types"
+import { Box, Button, CircularProgress, Typography } from "@mui/material"
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { useNavigate } from "react-router-dom";
 
-
-
-export default function Users() {
+export default function ListUsers() {
     const [data, setData] = useState<User[]>([])
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
 
     const fetchData = async () => {
         setLoading(true)
@@ -48,10 +48,14 @@ export default function Users() {
         return <CircularProgress />
     }
     return <Box>
-        <Typography variant="h4">Users</Typography>
+        <Box display="flex" justifyContent={"space-between"} mb={3}>
+            <Typography variant="h4">Users</Typography>
+            <Button variant="outlined" size='small' onClick={() => navigate('/users/add')}>Create New User</Button>
+        </Box>
         <Box sx={{ width: '100%' }}>
             <DataGrid
                 rows={data}
+                onRowClick={(e) => navigate(`/users/${e.id}`)}
                 columns={columns}
                 initialState={{
                     pagination: {
